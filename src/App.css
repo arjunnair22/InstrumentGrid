@@ -1,16 +1,7 @@
-.todo-app{
+.table-app{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   flex-direction: column;
-}
-
-.todo-header-btns{
-  display: flex;
-  flex-direction: row;
-}
-
-.todo-item{
-  cursor: pointer;
 }

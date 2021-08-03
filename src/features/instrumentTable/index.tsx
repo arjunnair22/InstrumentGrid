@@ -1,14 +1,13 @@
 import Grid from "../../commonFeatures/Grid";
 import {useEffect, useState} from "react";
 import {apis} from "../../constants/apis";
-import {fetch} from "msw/lib/types/context";
 import {InstrumentData} from "./types/InstrumentData";
 import {sortInstrumentData} from "../../helpers/sorts";
+import {assetClassColors} from "../../constants/constant";
 
 
 function InstrumentTable(){
     const [instrumentData, setInstrumentData] = useState<InstrumentData[]>([]);
-
     const fetchInstrumentData = async (): Promise<InstrumentData[]>=>{
         try{
             let response = await fetch(apis.instruments)
@@ -29,15 +28,23 @@ function InstrumentTable(){
     return (
         <Grid data={instrumentData} gridDef={
             {
-                rowDef:{},
+                rowDef:{
+                    rowStyle:(row)=>{
+                        return assetClassColors[row.assetClass.toLocaleLowerCase()];
+                    }
+                },
                 colDefs:[
                     {
                         key:"ticker",
-                        displayName:'Ticker'
+                        displayName:'Ticker',
+
                     },
                     {
                         key:"price",
-                        displayName:"Price"
+                        displayName:"Price",
+                        cssStyleClass:(price)=>{
+                            return price[1] >= 0 ? "text-primary" : "text-danger";
+                        }
                     },
                     {
                         key:"assetClass",

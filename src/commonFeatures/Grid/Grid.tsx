@@ -4,7 +4,7 @@ import {useMemo} from "react";
 import { GridDef} from "./types";
 import {colDefsReducer} from "../../helpers/reducers";
 
-type GridProps<R>={
+interface GridProps<R>{
     data:R[],
     gridDef:GridDef<R>
 }
@@ -12,7 +12,7 @@ type GridProps<R>={
 
 function Grid<R>({data, gridDef}:GridProps<R>){
     return (
-        <table>
+        <table className={'table table-bordered'}>
             <Header gridDef={gridDef}/>
             <GridBody data={data} gridDef={gridDef}/>
         </table>

@@ -1,7 +1,7 @@
 export const apis = {
-    'instruments': '/api/instruments'
+    'instruments': getDomainURL()+'/instrumentData'
 }
 
 function getDomainURL(){
-    return `${process.env.API_URL}:${process.env.API_PORT}`
+    return `${'http://localhost:3000'}`
 }

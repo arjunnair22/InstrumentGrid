@@ -24,11 +24,11 @@ function HeaderRow<R>({ gridDef }:HeaderProps<R>){
         <>
             {colDefs.map(def =>( {key: def.key,displayName:def.displayName} )).map((def, index) => {
                 return (
-                    <td key={def+'_'+index} id={`${index}`} >
+                    <th key={def+'_'+index} id={`${index}`} >
                         {
                             def.displayName
                         }
-                    </td>
+                    </th>
                 )
             })}
         </>
