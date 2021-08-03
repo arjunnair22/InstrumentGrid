@@ -1,23 +1,13 @@
 import Grid from "../../commonFeatures/Grid";
 import {useEffect, useState} from "react";
-import {apis} from "../../constants/apis";
 import {InstrumentData} from "./types/InstrumentData";
 import {sortByAssetClass, sortByPrice, sortByTicker} from "../../helpers/sorts";
 import {assetClassColors} from "../../constants/constant";
+import {fetchInstrumentData} from "../../services/InstrumentDataService";
 
 
 function InstrumentTable(){
     const [instrumentData, setInstrumentData] = useState<InstrumentData[]>([]);
-    const fetchInstrumentData = async (): Promise<InstrumentData[]>=>{
-        try{
-            let response = await fetch(apis.instruments)
-            return await response.json();
-        }
-        catch (e){
-            return [];
-        }
-
-    }
 
     useEffect( ()=>{
         fetchInstrumentData().then(setInstrumentData).catch(console.log);
