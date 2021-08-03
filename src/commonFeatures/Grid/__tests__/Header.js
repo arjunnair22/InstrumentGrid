@@ -2,6 +2,15 @@ import React from "react";
 import Header from "../Header";
 import {render, screen} from "../../../test-utils";
 
+function Table (props){
+    return (<table>
+            {props.children}
+            <tbody>
+            </tbody>
+        </table>
+    )
+}
+
 const gridDef={
     rowDef:{},
     colDefs:[
@@ -23,7 +32,11 @@ const gridDef={
 }
 
 test('header renders', async ()=>{
-   render(<Header gridDef={gridDef}/>)
+   render(
+       <Table>
+            <Header gridDef={gridDef}/>
+       </Table>
+   )
    expect(screen.getByText(gridDef.colDefs[0].displayName)).toBeInTheDocument();
    expect(screen.getByText(gridDef.colDefs[1].displayName)).toBeInTheDocument();
    expect(screen.getByText(gridDef.colDefs[2].displayName)).toBeInTheDocument();
@@ -33,7 +46,11 @@ test('click event is fired for ticker with correct index number',async ()=> {
     const cb = {
         sortable: jest.fn()
     }
-    render(<Header gridDef={gridDef} callbacks={cb}/>)
+    render(
+        <Table>
+            <Header gridDef={gridDef} callbacks={cb}/>
+        </Table>
+    )
     let ticker = screen.getByText(gridDef.colDefs[0].displayName);
     ticker.click();
     expect(cb.sortable).toBeCalledTimes(1);
@@ -46,7 +63,11 @@ test('click event is fired for price with correct index number',async ()=> {
     const cb = {
         sortable: jest.fn()
     }
-    render(<Header gridDef={gridDef} callbacks={cb}/>)
+    render(
+        <Table>
+            <Header gridDef={gridDef} callbacks={cb}/>
+        </Table>
+)
 
     let price = screen.getByText(gridDef.colDefs[1].displayName);
     price.click();
