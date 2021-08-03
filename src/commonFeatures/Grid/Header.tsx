@@ -4,19 +4,13 @@ import React from "react";
 type HeaderProps<R> ={
     gridDef:GridDef<R>,
     data?:R
-    callbacks?: {
-        sortable: (index:number)=>void
-    }
 }
 
-function Header<R>({ gridDef, callbacks }:HeaderProps<R>){
-    const tdClicked = function onClicked (event:React.MouseEvent){
-        let id = (event.target as Element).id
-        callbacks && callbacks.sortable(+id);
-    }
+function Header<R>({ gridDef }:HeaderProps<R>){
+
     return (
         <thead>
-            <tr onClick={tdClicked}>
+            <tr>
                 <HeaderRow gridDef={gridDef}/>
             </tr>
         </thead>
@@ -28,11 +22,11 @@ function HeaderRow<R>({ gridDef }:HeaderProps<R>){
 
     return (
         <>
-            {colDefs.map(def => def.key).map((def, index) => {
+            {colDefs.map(def =>( {key: def.key,displayName:def.displayName} )).map((def, index) => {
                 return (
                     <td key={def+'_'+index} id={`${index}`} >
                         {
-                            def
+                            def.displayName
                         }
                     </td>
                 )

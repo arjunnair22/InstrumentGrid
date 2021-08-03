@@ -1,7 +1,6 @@
 export type ColumnDef<R> = {
     key: string,
-    sortable?: boolean,
-    sortFn?: (row1:R, row2:R) => boolean
+    displayName:string,
     cssStyleClass?: (col:Column) => string
 }
 
