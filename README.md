@@ -4,9 +4,10 @@ run 'npm install'.
 
 run 'npm install -g json-server'.
 
+run 'json-server --watch db.json'.
+
 run 'npm start'.
 
-run 'json-server --watch db.json'.
 
 
 # Getting Started with Create React App
