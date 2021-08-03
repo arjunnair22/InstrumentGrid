@@ -1,8 +1,8 @@
 #Getting Started with Instrument Data Application
-run 'npm install'
-run 'npm install -g json-server'
-run 'npm start'
-run 'json-server --watch db.json'
+run 'npm install'.
+run 'npm install -g json-server'.
+run 'npm start'.
+run 'json-server --watch db.json'.
 
 
 # Getting Started with Create React App
