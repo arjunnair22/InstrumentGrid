@@ -6,3 +6,7 @@ export type ColumnDef<R> = {
 }
 
 export type Column = [a:string, b:any]
+
+export type ColDefMap<R> ={
+    [key:string] : ColumnDef<R>
+}

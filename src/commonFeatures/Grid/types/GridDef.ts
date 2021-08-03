@@ -2,7 +2,7 @@ import {ColumnDef} from "./ColumnDef";
 
 export type GridDef<R> ={
     rowDef:RowDef<R>,
-    colDef:ColumnDef<R>
+    colDefs:ColumnDef<R>[]
 }
 
 export type RowDef<R> ={

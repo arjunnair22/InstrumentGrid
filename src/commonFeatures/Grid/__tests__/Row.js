@@ -10,12 +10,22 @@ const row = {
 
 test('row renders', async ()=>{
    const gridDef={
-      rowDef:{},
+      rowDef:{
+         rowStyle:()=>{
+            return 'row-style'
+         }
+      },
       colDef:{
          options:{}
       }
    }
-   render(<Row row={row} options={gridDef}/>)
+   const colDefMap = {
+      'ticker':{key:'ticker'},
+      'price':{key:'price'},
+      'assetClass':{key:'Credit'}
+   }
+
+   render(<Row row={row} options={gridDef} colDefMap={colDefMap}/>)
    expect(screen.getByText(row.ticker)).toBeInTheDocument();
    expect(screen.getByText(row.price)).toBeInTheDocument();
    expect(screen.getByText(row.assetClass)).toBeInTheDocument();
@@ -24,7 +34,7 @@ test('row renders', async ()=>{
 test('row renders with correct classname', async ()=>{
    const gridDef={
       rowDef:{
-         rowStyle:(row)=>{
+         rowStyle:()=>{
             return 'row-style'
          }
       },
@@ -32,10 +42,15 @@ test('row renders with correct classname', async ()=>{
          options:{}
       }
    }
+   const colDefMap = {
+      'ticker':{key:'ticker'},
+      'price':{key:'price'},
+      'assetClass':{key:'Credit'}
+   }
    render(
        <table>
        <tbody>
-       <Row row={row} options={gridDef}/>
+       <Row row={row} options={gridDef} colDefMap={colDefMap}/>
        </tbody>
        </table>
    )
