@@ -18,7 +18,10 @@ function Grid<R>({data, gridDef}:GridProps<R>){
         }
     }
 
+    const noData = data.length === 0;
+
     return (
+        noData ?<p> No data available </p>:
         <table className={'table table-bordered'}>
             <Header gridDef={gridDef} callbacks={callbacks}/>
             <GridBody data={data} gridDef={gridDef}/>
@@ -37,7 +40,7 @@ function GridBody<R>({data, gridDef}:GridProps<R>){
             {
                 data.map((d,index)=>{
                     return (
-                        <Row colDefMap={colDefMap} key={index} row={d} options={gridDef} />
+                        <Row colDefMap={colDefMap} key={index} row={d} options={gridDef} index={`r-${index}`}/>
                     )
                 })
             }
