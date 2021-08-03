@@ -36,7 +36,7 @@ function GridBody<R>({data, gridDef}:GridProps<R>){
         }, [gridDef.colDefs]
     )
     return (
-        <>
+        <tbody>
             {
                 data.map((d,index)=>{
                     return (
@@ -44,7 +44,7 @@ function GridBody<R>({data, gridDef}:GridProps<R>){
                     )
                 })
             }
-        </>
+        </tbody>
     )
 }
 
