@@ -5,3 +5,7 @@
   height: 100vh;
   flex-direction: column;
 }
+
+.grid-tr{
+  cursor: pointer;
+}

@@ -2,7 +2,7 @@ import Grid from "../../commonFeatures/Grid";
 import {useEffect, useState} from "react";
 import {apis} from "../../constants/apis";
 import {InstrumentData} from "./types/InstrumentData";
-import {sortInstrumentData} from "../../helpers/sorts";
+import {sortByAssetClass, sortByPrice, sortByTicker} from "../../helpers/sorts";
 import {assetClassColors} from "../../constants/constant";
 
 
@@ -11,8 +11,7 @@ function InstrumentTable(){
     const fetchInstrumentData = async (): Promise<InstrumentData[]>=>{
         try{
             let response = await fetch(apis.instruments)
-            let data  = await response.json();
-            return sortInstrumentData(data);
+            return await response.json();
         }
         catch (e){
             return [];
@@ -33,22 +32,27 @@ function InstrumentTable(){
                         return assetClassColors[row.assetClass.toLocaleLowerCase()];
                     }
                 },
+                dataSetter:(data:InstrumentData[])=>{
+                    setInstrumentData(data)
+                },
                 colDefs:[
                     {
                         key:"ticker",
                         displayName:'Ticker',
-
+                        sortComparator:sortByTicker,
                     },
                     {
                         key:"price",
                         displayName:"Price",
                         cssStyleClass:(price)=>{
                             return price[1] >= 0 ? "text-primary" : "text-danger";
-                        }
+                        },
+                        sortComparator:sortByPrice
                     },
                     {
                         key:"assetClass",
-                        displayName:"Asset Class"
+                        displayName:"Asset Class",
+                        sortComparator:sortByAssetClass
                     }
                 ]
             }

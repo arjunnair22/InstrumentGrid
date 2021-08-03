@@ -9,11 +9,18 @@ interface GridProps<R>{
     gridDef:GridDef<R>
 }
 
-
 function Grid<R>({data, gridDef}:GridProps<R>){
+
+    const callbacks = {
+        sortable:(index:number)=>{
+            let comparator = gridDef.colDefs[index].sortComparator;
+            gridDef.dataSetter(data.slice().sort(comparator));
+        }
+    }
+
     return (
         <table className={'table table-bordered'}>
-            <Header gridDef={gridDef}/>
+            <Header gridDef={gridDef} callbacks={callbacks}/>
             <GridBody data={data} gridDef={gridDef}/>
         </table>
     )
